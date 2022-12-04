@@ -153,12 +153,59 @@ namespace LibMas
                 file.Close();
             }
         }
-        /// <summary>
-        /// Функция для записи в передаваемую матрицу новых значений из открытого уже существующего файла из корневой системы Windows
-        /// </summary>
-        /// <param name="mas">Матрица со значениями для записи в неё новых значений</param>
-        public static void DVOpenMassiv(ref int[,] mas)
+        public static void DVDoubleSaveMassiv(double[,] mas)
         {
+            SaveFileDialog save = new SaveFileDialog();
+            save.DefaultExt = ".txt";
+            save.Filter = "Все файлы (*.*) | *.* | Текстовые файлы | *.txt";
+            save.FilterIndex = 2;
+            save.Title = "Сохранение таблицы";
+
+            if (save.ShowDialog() == true)
+            {
+                StreamWriter file = new StreamWriter(save.FileName);
+                file.WriteLine(mas.GetLength(0));
+                file.WriteLine(mas.GetLength(1));
+                for (int i = 0; i < mas.GetLength(0); i++)
+                {
+                    for (int j = 0; j < mas.GetLength(1); j++)
+                    {
+                        file.WriteLine(mas[i, j]);
+                    }
+                }
+                file.Close();
+            }
+        }
+
+        public static void DVDoubleOpenMassiv(ref double[,] mas)
+        {
+            OpenFileDialog open = new OpenFileDialog();
+            open.DefaultExt = ".txt";
+            open.Filter = "Все файлы (*.*) | *.* | Текстовые файлы | *.txt";
+            open.FilterIndex = 2;
+            open.Title = "Открытие таблицы";
+            if (open.ShowDialog() == true)
+            {
+                StreamReader file = new StreamReader(open.FileName);
+                int rows = Convert.ToInt32(file.ReadLine());
+                int columns = Convert.ToInt32(file.ReadLine());
+                mas = new double[rows, columns];
+                for (int i = 0; i < mas.GetLength(0); i++)
+                {
+                    for (int j = 0; j < mas.GetLength(1); j++)
+                    {
+                        mas[i, j] = Convert.ToDouble(file.ReadLine());
+                    }
+                }
+                file.Close();
+            }
+        }
+            /// <summary>
+            /// Функция для записи в передаваемую матрицу новых значений из открытого уже существующего файла из корневой системы Windows
+            /// </summary>
+            /// <param name="mas">Матрица со значениями для записи в неё новых значений</param>
+            public static void DVOpenMassiv(ref int[,] mas)
+            {
             OpenFileDialog open = new OpenFileDialog();
             open.DefaultExt = ".txt";
             open.Filter = "Все файлы (*.*) | *.* | Текстовые файлы | *.txt";

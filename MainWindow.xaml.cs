@@ -48,11 +48,12 @@ namespace Prakt13
             time.Text = now.ToString("HH:mm:ss");
             data.Text = now.ToString("dd.MM.yyyy");
             matrrazm.Text = $"{matr.GetLength(0)}x{matr.GetLength(1)}";
-            indx.Text = $"{nachl.SelectedIndex+1}";
+            if (nachl != null) indx.Text = $"{nachl.SelectedIndex + 1}";
+            else indx.Text = "0";
         }
 
         double[,] matr = new double[0,0];
-        double[,] rematr;
+        double[,] rematr = new double[0,0];
         Swap mas = new Swap();
 
         private void Spavka(object sender, RoutedEventArgs e)
@@ -73,8 +74,10 @@ namespace Prakt13
         }
 
         private void Clear_Click(object sender,RoutedEventArgs e)
-        {
-            rezu = null;nachl = null;
+        {           
+            matr = new double[0,0];rematr = null;
+            rezu.ItemsSource = null; nachl.ItemsSource = null;
+            Row.Clear(); Column.Clear(); Maxrand.Clear();
         }
 
         private void Massiv(object sender, RoutedEventArgs e)
@@ -91,6 +94,7 @@ namespace Prakt13
                 nachl.ItemsSource = VisualArray.ToDataTable(matr).DefaultView;
                 LibMas.Masssiv.clearmatrica(ref rematr);
                 rezu.ItemsSource = null;
+                Row.Clear();Column.Clear();Maxrand.Clear();
             }
         }
 
@@ -98,6 +102,23 @@ namespace Prakt13
         {
             rematr = mas.MatrixSwap(matr);
             rezu.ItemsSource = VisualArray.ToDataTable(rematr).DefaultView;
+        }
+
+        private void CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            matr[e.Column.DisplayIndex, e.Row.GetIndex()] = Convert.ToDouble(((TextBox)e.EditingElement).Text);
+            rezu.ItemsSource = null; rematr = new double [0,0];
+        }
+
+        private void SaveMas(object sender, RoutedEventArgs e)
+        {
+            LibMas.Masssiv.DVDoubleSaveMassiv(matr);
+        }
+
+        private void OpenMas(object sender, RoutedEventArgs e)
+        {
+            LibMas.Masssiv.DVDoubleOpenMassiv(ref matr);
+            nachl.ItemsSource = VisualArray.ToDataTable(matr).DefaultView;
         }
     }
 }

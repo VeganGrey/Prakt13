@@ -11,7 +11,7 @@ namespace Prakt13
         public double[,] MatrixSwap(double[,] matr)
         {
             double[] mas = new double[matr.GetLength(1)];
-            double min = 0;double max = 0;
+            double min = matr[0,0];double max = matr[0,0];
             int kolmin = 0;int kolmax = 0;
             for(int i=0;i<matr.GetLength(0);i++)
             {
@@ -35,7 +35,7 @@ namespace Prakt13
                     }
                 }
             }
-            for(int i=0;i<mas.Length;i++)
+            for(int i=0;i<matr.GetLength(1);i++)
             {
                 mas[i] = matr[kolmin,i];
                 matr[kolmin,i] = matr[kolmax,i];

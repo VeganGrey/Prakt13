@@ -11,8 +11,8 @@
             <RowDefinition Height="20"/>
             <RowDefinition Height="19"/>
             <RowDefinition Height="167"/>
-            <RowDefinition Height="141*"/>
-            <RowDefinition Height="64*"/>
+            <RowDefinition Height="131*"/>
+            <RowDefinition Height="74*"/>
             <RowDefinition Height="21"/>
         </Grid.RowDefinitions>
 
@@ -29,7 +29,7 @@
         <ToolBar VerticalAlignment="Center" Height="24" Grid.Row="1">
             <Button Content="Файл"/>
             <Separator/>
-            <Button>
+            <Button Click="SaveMas">
                 <StackPanel Orientation="Horizontal" ToolTip="Сохранить в документ">
                     <TextBlock>Сохранить</TextBlock>
                     <Separator Opacity="0" Width="5"></Separator>
@@ -37,7 +37,7 @@
                 </StackPanel>
             </Button>
             <Separator></Separator>
-            <Button>
+            <Button Click="OpenMas">
                 <StackPanel Orientation="Horizontal" ToolTip="Открыть документ">
                     <TextBlock>Открыть</TextBlock>
                     <Separator Opacity="0" Width="5"></Separator>
@@ -49,7 +49,7 @@
 
         <GroupBox Header="Исходный данные" Margin="0,1,0,1" Grid.Row="2">
             <Grid>
-                <DataGrid x:Name="nachl"></DataGrid>
+                <DataGrid x:Name="nachl" CellEditEnding="CellEditEnding"></DataGrid>
             </Grid>
         </GroupBox>
 
@@ -78,13 +78,13 @@
             <Separator></Separator>
             <TextBlock x:Name="indx" Text="0"></TextBlock>
         </StatusBar>
-        <TextBox x:Name="Row" HorizontalAlignment="Left" Margin="18,10,0,0" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="Column" HorizontalAlignment="Left" Margin="18,36,0,0" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label HorizontalAlignment="Left" Margin="143,6,0,0" Grid.Row="4" VerticalAlignment="Top" Content="- количество строк" Height="26"/>
-        <Label HorizontalAlignment="Left" Margin="143,27,0,0" Grid.Row="4" VerticalAlignment="Top" Content="- количество столбцов" Height="26"/>
-        <TextBox x:Name="Maxrand" HorizontalAlignment="Left" Margin="321,10,0,0" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label Content="- ограничение" HorizontalAlignment="Left" Margin="446,6,0,0" Grid.Row="4" VerticalAlignment="Top"/>
-        <Button Click="Massiv" HorizontalAlignment="Left" Margin="337,38,0,0" Grid.Row="4" VerticalAlignment="Top" Content="Заполнить"/>
+        <TextBox x:Name="Row" HorizontalAlignment="Left" Margin="18,10,0,0" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="18"/>
+        <TextBox x:Name="Column" HorizontalAlignment="Left" Margin="18,36,0,0" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="18"/>
+        <Label HorizontalAlignment="Left" Margin="143,6,0,0" Grid.Row="4" VerticalAlignment="Top" Content="- количество строк" Height="26" Width="115"/>
+        <Label HorizontalAlignment="Left" Margin="143,32,0,10" Grid.Row="4" Content="- количество столбцов" Width="136"/>
+        <TextBox x:Name="Maxrand" HorizontalAlignment="Left" Margin="321,10,0,0" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="18"/>
+        <Label Content="- ограничение" HorizontalAlignment="Left" Margin="446,6,0,0" Grid.Row="4" VerticalAlignment="Top" Height="26" Width="90"/>
+        <Button Click="Massiv" HorizontalAlignment="Left" Margin="337,38,0,0" Grid.Row="4" VerticalAlignment="Top" Content="Заполнить" Height="20" Width="62"/>
         <FrameworkElement.ContextMenu>
             <ContextMenu>
                 <MenuItem Header="Копировать"/>
