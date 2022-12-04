@@ -5,10 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Prakt13"
         mc:Ignorable="d"
-        Title="MainWindow" Height="328" Width="550">
+        Title="MainWindow" Height="448" Width="571" MinHeight="448" MinWidth="571">
     <Grid>
-        
-        <Menu VerticalAlignment="Top" Grid.Row="1" Height="19">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="168*"/>
+            <RowDefinition Height="159*"/>
+            <RowDefinition Height="64*"/>
+            <RowDefinition Height="21*"/>
+        </Grid.RowDefinitions>
+
+        <Menu VerticalAlignment="Center" Height="19">
             <MenuItem Header="Файл" FontFamily="Cascadia Code">
                 <MenuItem Header="Изменить матрицу" FontFamily="Cascadia Code"/>
                 <MenuItem Header="Очистка" FontFamily="Cascadia Code" Click="Clear_Click"></MenuItem>
@@ -18,9 +25,27 @@
             <MenuItem Header="Выход" FontFamily="Cascadia Code" Height="16" Click="Quit"></MenuItem>
         </Menu>
 
+        <GroupBox Header="Исходный данные" Margin="0,2,0,1" Grid.Row="1">
+            <Grid>
+                <DataGrid x:Name="nachl"></DataGrid>
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Header="Результат" Margin="0,166,0,9" Grid.Row="1" Grid.RowSpan="2">
+            <Grid>
+                <DataGrid x:Name="rezu"></DataGrid>
+            </Grid>
+        </GroupBox>
 
 
-        <StatusBar VerticalAlignment="Bottom" Grid.Row="4" Height="20">
+
+
+
+
+
+
+
+        <StatusBar VerticalAlignment="Center" Grid.Row="4" Height="20">
             <TextBlock Text="Задание 13"></TextBlock>
             <Separator></Separator>
             <TextBlock x:Name="data" Text="00.00.0000"></TextBlock>

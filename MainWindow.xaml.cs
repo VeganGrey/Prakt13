@@ -52,5 +52,29 @@ namespace Prakt13
         }
 
         double[] matr;
+
+        private void Spavka(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Калитин С.А. ИСП-31 Вариант 13\nДаны координаты трех вершин треугольника: (x1, y1), (x2, y2), (x3, y3). Найти его " +
+                "периметр и площадь, используя окнолу для расстояния между двумя точками на" +
+                "плоскости (см. задание 12). Для нахождения площади треугольника со сторонами a,b, c использовать окнолу Герона\n" +
+                "Дано трехзначное число. Найти сумму и произведение его цифр.");
+        }
+
+        private void Support(object sender, RoutedEventArgs e)
+        {
+            string target = "https://t.me/Username1_1";
+            System.Diagnostics.Process.Start(target);
+        }
+
+        private void Quit(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Clear_Click(object sender,RoutedEventArgs e)
+        {
+            rezu = null;nachl = null;
+        }
     }
 }
