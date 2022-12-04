@@ -5,19 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Prakt13"
         mc:Ignorable="d"
-        Title="MainWindow" Height="448" Width="571" MinHeight="448" MinWidth="571">
+        Title="MainWindow" Height="448" Width="571" MinHeight="448" MinWidth="571" Loaded="Window_Loaded">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="20*"/>
-            <RowDefinition Height="168*"/>
-            <RowDefinition Height="159*"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="19"/>
+            <RowDefinition Height="167"/>
+            <RowDefinition Height="141*"/>
             <RowDefinition Height="64*"/>
-            <RowDefinition Height="21*"/>
+            <RowDefinition Height="21"/>
         </Grid.RowDefinitions>
 
-        <Menu VerticalAlignment="Center" Height="19">
+        <Menu VerticalAlignment="Center" Height="20">
             <MenuItem Header="Файл" FontFamily="Cascadia Code">
-                <MenuItem Header="Изменить матрицу" FontFamily="Cascadia Code"/>
+                <MenuItem Header="Изменить матрицу" FontFamily="Cascadia Code" Click="Rechange"/>
                 <MenuItem Header="Очистка" FontFamily="Cascadia Code" Click="Clear_Click"></MenuItem>
             </MenuItem>
             <MenuItem Header="О программе" FontFamily="Cascadia Code" Click="Spavka"></MenuItem>
@@ -25,13 +26,34 @@
             <MenuItem Header="Выход" FontFamily="Cascadia Code" Height="16" Click="Quit"></MenuItem>
         </Menu>
 
-        <GroupBox Header="Исходный данные" Margin="0,2,0,1" Grid.Row="1">
+        <ToolBar VerticalAlignment="Center" Height="24" Grid.Row="1">
+            <Button Content="Файл"/>
+            <Separator/>
+            <Button>
+                <StackPanel Orientation="Horizontal" ToolTip="Сохранить в документ">
+                    <TextBlock>Сохранить</TextBlock>
+                    <Separator Opacity="0" Width="5"></Separator>
+                    <Image Source="Image\149111.png"></Image>
+                </StackPanel>
+            </Button>
+            <Separator></Separator>
+            <Button>
+                <StackPanel Orientation="Horizontal" ToolTip="Открыть документ">
+                    <TextBlock>Открыть</TextBlock>
+                    <Separator Opacity="0" Width="5"></Separator>
+                    <Image Source="Image\14355.png"></Image>
+                </StackPanel>
+            </Button>
+        </ToolBar>
+
+
+        <GroupBox Header="Исходный данные" Margin="0,1,0,1" Grid.Row="2">
             <Grid>
                 <DataGrid x:Name="nachl"></DataGrid>
             </Grid>
         </GroupBox>
 
-        <GroupBox Header="Результат" Margin="0,166,0,9" Grid.Row="1" Grid.RowSpan="2">
+        <GroupBox Header="Результат" Margin="0,0,0,9" Grid.Row="3">
             <Grid>
                 <DataGrid x:Name="rezu"></DataGrid>
             </Grid>
@@ -45,7 +67,7 @@
 
 
 
-        <StatusBar VerticalAlignment="Center" Grid.Row="4" Height="20">
+        <StatusBar VerticalAlignment="Center" Grid.Row="5" Height="20">
             <TextBlock Text="Задание 13"></TextBlock>
             <Separator></Separator>
             <TextBlock x:Name="data" Text="00.00.0000"></TextBlock>
@@ -56,6 +78,13 @@
             <Separator></Separator>
             <TextBlock x:Name="indx" Text="0"></TextBlock>
         </StatusBar>
+        <TextBox x:Name="Row" HorizontalAlignment="Left" Margin="18,10,0,0" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="Column" HorizontalAlignment="Left" Margin="18,36,0,0" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label HorizontalAlignment="Left" Margin="143,6,0,0" Grid.Row="4" VerticalAlignment="Top" Content="- количество строк" Height="26"/>
+        <Label HorizontalAlignment="Left" Margin="143,27,0,0" Grid.Row="4" VerticalAlignment="Top" Content="- количество столбцов" Height="26"/>
+        <TextBox x:Name="Maxrand" HorizontalAlignment="Left" Margin="321,10,0,0" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="- ограничение" HorizontalAlignment="Left" Margin="446,6,0,0" Grid.Row="4" VerticalAlignment="Top"/>
+        <Button Click="Massiv" HorizontalAlignment="Left" Margin="337,38,0,0" Grid.Row="4" VerticalAlignment="Top" Content="Заполнить"/>
         <FrameworkElement.ContextMenu>
             <ContextMenu>
                 <MenuItem Header="Копировать"/>

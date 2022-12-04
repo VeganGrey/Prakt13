@@ -112,6 +112,20 @@ namespace LibMas
                     mas[i,j] = rnd.Next(max);
             return mas;
         }
+
+        public static void DvDoubleZapol(int i,int j,int max,ref double[,]matr)
+        {
+            matr = new double[i, j];
+            Random rnd = new Random();
+            for (i = 0; i < matr.GetLength(0); i++)
+                for (j = 0; j < matr.GetLength(1); j++)
+                    matr[i, j] = rnd.Next(max);
+        }
+
+        public static void clearmatrica(ref double[,] matr)
+        {
+            matr = null;
+        }
         /// <summary>
         /// Функция для записи матрицы со значениями в созданный\существующий текстовый файл,в корневой системе Windows
         /// </summary>

@@ -96,6 +96,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Image\14355.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\149111.png" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="LibMas\LibMas.csproj">
       <Project>{d18ba6c9-30e5-49e1-a5fa-00e79704ea40}</Project>
       <Name>LibMas</Name>

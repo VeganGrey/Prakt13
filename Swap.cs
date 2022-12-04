@@ -22,14 +22,20 @@ namespace Prakt13
                         max = matr[i,j];
                         kolmax = i;
                     }
-                    if (matr[i,j] <min)
+                }
+            }
+            for(int i = 0;i<matr.GetLength(0);i++)
+            {
+                for(int j= 0;j<matr.GetLength(1);j++)
+                {
+                    if (matr[i, j] < min)
                     {
-                        min = matr[i,j];
+                        min = matr[i, j];
                         kolmin = i;
                     }
                 }
             }
-            for(int i=kolmin;i<mas.Length;i++)
+            for(int i=0;i<mas.Length;i++)
             {
                 mas[i] = matr[kolmin,i];
                 matr[kolmin,i] = matr[kolmax,i];

@@ -39,26 +39,26 @@ namespace Prakt13
         {
             timer = new DispatcherTimer();
             timer.Tick += new EventHandler(this.Timer_Tick);
-            timer.Interval = new TimeSpan(0, 0, 0, 1, 0);
+            timer.Interval = new TimeSpan(0, 0, 0, 0, 1);
             timer.IsEnabled = true;
         }
         private void Timer_Tick(object sender, EventArgs e)
         {
-            matrrazm.Text = $"{matr.GetLength(0)+1}x{matr.GetLength(1)+1}";
-            indx.Text = $"";
             DateTime now = DateTime.Now;
             time.Text = now.ToString("HH:mm:ss");
             data.Text = now.ToString("dd.MM.yyyy");
+            matrrazm.Text = $"{matr.GetLength(0)}x{matr.GetLength(1)}";
+            indx.Text = $"{nachl.SelectedIndex+1}";
         }
 
-        double[] matr;
+        double[,] matr = new double[0,0];
+        double[,] rematr;
+        Swap mas = new Swap();
 
         private void Spavka(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Калитин С.А. ИСП-31 Вариант 13\nДаны координаты трех вершин треугольника: (x1, y1), (x2, y2), (x3, y3). Найти его " +
-                "периметр и площадь, используя окнолу для расстояния между двумя точками на" +
-                "плоскости (см. задание 12). Для нахождения площади треугольника со сторонами a,b, c использовать окнолу Герона\n" +
-                "Дано трехзначное число. Найти сумму и произведение его цифр.");
+            MessageBox.Show("Калитин С.А. ИСП-31 Вариант 13\nДана вещественная матрица А(M, N). " +
+                "Строку, содержащий максимальный элемент, поменять местами со строкой, содержащей минимальный элемент.");
         }
 
         private void Support(object sender, RoutedEventArgs e)
@@ -75,6 +75,29 @@ namespace Prakt13
         private void Clear_Click(object sender,RoutedEventArgs e)
         {
             rezu = null;nachl = null;
+        }
+
+        private void Massiv(object sender, RoutedEventArgs e)
+        {
+            if(Row.Text == "" || Column.Text == "" || Maxrand.Text == "")
+            {
+                MessageBox.Show("Введите правильные данные");
+            }
+            else
+            {
+                Int32.TryParse(Row.Text, out int row); Int32.TryParse(Column.Text, out int column); Int32.TryParse(Maxrand.Text, out int maxrand);
+                matr = new double[row, column];
+                LibMas.Masssiv.DvDoubleZapol(row, column, maxrand, ref matr);
+                nachl.ItemsSource = VisualArray.ToDataTable(matr).DefaultView;
+                LibMas.Masssiv.clearmatrica(ref rematr);
+                rezu.ItemsSource = null;
+            }
+        }
+
+        private void Rechange(object sender,RoutedEventArgs e)
+        {
+            rematr = mas.MatrixSwap(matr);
+            rezu.ItemsSource = VisualArray.ToDataTable(rematr).DefaultView;
         }
     }
 }
