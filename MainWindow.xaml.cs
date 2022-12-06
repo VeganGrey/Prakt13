@@ -47,14 +47,13 @@ namespace Prakt13
             DateTime now = DateTime.Now;
             time.Text = now.ToString("HH:mm:ss");
             data.Text = now.ToString("dd.MM.yyyy");
-            matrrazm.Text = $"{matr.GetLength(0)}x{matr.GetLength(1)}";
+            matrrazm.Text = $"{matrica.GetLength(0)}x{matrica.GetLength(1)}";
             if (nachl != null) indx.Text = $"{nachl.SelectedIndex + 1}";
             else indx.Text = "0";
         }
 
-        double[,] matr = new double[0,0];
-        double[,] rematr = new double[0,0];
-        Swap mas = new Swap();
+        double[,] matrica = new double[0,0];
+        double[,] rematr;
 
         private void Spavka(object sender, RoutedEventArgs e)
         {
@@ -75,7 +74,7 @@ namespace Prakt13
 
         private void Clear_Click(object sender,RoutedEventArgs e)
         {           
-            matr = new double[0,0];rematr = null;
+            matrica = new double[0,0];rematr = null;
             rezu.ItemsSource = null; nachl.ItemsSource = null;
             Row.Clear(); Column.Clear(); Maxrand.Clear();
         }
@@ -89,36 +88,39 @@ namespace Prakt13
             else
             {
                 Int32.TryParse(Row.Text, out int row); Int32.TryParse(Column.Text, out int column); Int32.TryParse(Maxrand.Text, out int maxrand);
-                matr = new double[row, column];
-                LibMas.Masssiv.DvDoubleZapol(row, column, maxrand, ref matr);
-                nachl.ItemsSource = VisualArray.ToDataTable(matr).DefaultView;
+                matrica = new double[row, column];
+                LibMas.Masssiv.DvDoubleZapol(maxrand, ref matrica);
+                nachl.ItemsSource = VisualArray.ToDataTable(matrica).DefaultView;
                 LibMas.Masssiv.clearmatrica(ref rematr);
                 rezu.ItemsSource = null;
                 Row.Clear();Column.Clear();Maxrand.Clear();
             }
         }
+        private void CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            int indexColumn = nachl.CurrentCell.Column.DisplayIndex;
+            int indexRow = nachl.SelectedIndex;
+            Double.TryParse(((TextBox)e.EditingElement).Text, out double value);
+            matrica[indexRow, indexColumn] = value;
+        }
 
         private void Rechange(object sender,RoutedEventArgs e)
         {
-            rematr = mas.MatrixSwap(matr);
+            rematr = Swap.MatrixSwap(matrica);
             rezu.ItemsSource = VisualArray.ToDataTable(rematr).DefaultView;
         }
 
-        private void CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
-        {
-            matr[e.Column.DisplayIndex, e.Row.GetIndex()] = Convert.ToDouble(((TextBox)e.EditingElement).Text);
-            rezu.ItemsSource = null; rematr = new double [0,0];
-        }
+
 
         private void SaveMas(object sender, RoutedEventArgs e)
         {
-            LibMas.Masssiv.DVDoubleSaveMassiv(matr);
+            LibMas.Masssiv.DVDoubleSaveMassiv(matrica);
         }
 
         private void OpenMas(object sender, RoutedEventArgs e)
         {
-            LibMas.Masssiv.DVDoubleOpenMassiv(ref matr);
-            nachl.ItemsSource = VisualArray.ToDataTable(matr).DefaultView;
+            LibMas.Masssiv.DVDoubleOpenMassiv(ref matrica);
+            nachl.ItemsSource = VisualArray.ToDataTable(matrica).DefaultView;
         }
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Prakt13"
         mc:Ignorable="d"
-        Title="MainWindow" Height="448" Width="571" MinHeight="448" MinWidth="571" Loaded="Window_Loaded">
+        Title="MainWindow" Height="448" Width="571" MinHeight="448" MinWidth="571" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
@@ -58,14 +58,6 @@
                 <DataGrid x:Name="rezu"></DataGrid>
             </Grid>
         </GroupBox>
-
-
-
-
-
-
-
-
 
         <StatusBar VerticalAlignment="Center" Grid.Row="5" Height="20">
             <TextBlock Text="Задание 13"></TextBlock>

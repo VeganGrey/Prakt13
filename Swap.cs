@@ -8,16 +8,16 @@ namespace Prakt13
 {
     internal class Swap
     {
-        public double[,] MatrixSwap(double[,] matr)
+        public static double[,] MatrixSwap(double[,] matr)
         {
             double[] mas = new double[matr.GetLength(1)];
             double min = matr[0,0];double max = matr[0,0];
-            int kolmin = 0;int kolmax = 0;
+            int kolmax=0;int kolmin=0;
             for(int i=0;i<matr.GetLength(0);i++)
             {
                 for(int j=0;j<matr.GetLength(1);j++)
                 {
-                    if (matr[i,j]>max)
+                    if (matr[i,j] > max)
                     {
                         max = matr[i,j];
                         kolmax = i;

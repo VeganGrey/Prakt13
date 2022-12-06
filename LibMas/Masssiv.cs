@@ -109,17 +109,16 @@ namespace LibMas
             Random rnd = new Random();
             for (i = 0; i< mas.GetLength(0);i++)
                 for (j= 0; j< mas.GetLength(1);j++)
-                    mas[i,j] = rnd.Next(max);
+                    mas[i,j] = rnd.Next(-max,max);
             return mas;
         }
 
-        public static void DvDoubleZapol(int i,int j,int max,ref double[,]matr)
+        public static void DvDoubleZapol(int max,ref double[,]matr)
         {
-            matr = new double[i, j];
             Random rnd = new Random();
-            for (i = 0; i < matr.GetLength(0); i++)
-                for (j = 0; j < matr.GetLength(1); j++)
-                    matr[i, j] = rnd.Next(max);
+            for (int i = 0; i < matr.GetLength(0); i++)
+                for (int j = 0; j < matr.GetLength(1); j++)
+                    matr[i, j] = rnd.Next(-max,max);
         }
 
         public static void clearmatrica(ref double[,] matr)
